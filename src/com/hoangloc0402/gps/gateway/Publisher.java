@@ -36,7 +36,6 @@ public class Publisher implements MqttCallback, IMqttActionListener {
             memoryPersistence = new MemoryPersistence();
             clientId = MqttAsyncClient.generateClientId();
             client = new MqttAsyncClient(MqttServerURL, clientId, memoryPersistence);
-            // I want to use this instance as the callback
             client.setCallback(this);
             connectToken = client.connect(options, null, this);
         }
@@ -60,7 +59,6 @@ public class Publisher implements MqttCallback, IMqttActionListener {
 
     @Override
     public void connectionLost(Throwable cause) {
-        // The MQTT client lost the connection
         cause.printStackTrace();
     }
 
@@ -82,7 +80,6 @@ public class Publisher implements MqttCallback, IMqttActionListener {
 
     @Override
     public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-        // The method will run if an operation failed
         exception.printStackTrace();
     }
 
