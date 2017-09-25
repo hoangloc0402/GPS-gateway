@@ -44,7 +44,7 @@ public class Publisher implements MqttCallback, IMqttActionListener {
             e.printStackTrace();
         }
     }
-//ahahaha
+
     public boolean isConnected() {
         return (client != null) && (client.isConnected());
     }
