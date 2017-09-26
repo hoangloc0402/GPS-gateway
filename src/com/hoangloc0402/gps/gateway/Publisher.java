@@ -53,8 +53,7 @@ public class Publisher implements MqttCallback, IMqttActionListener {
     }
 
     public String getMessage(){
-        if (PublishQueue.isEmpty()) return "";
-        else return PublishQueue.poll();
+        return PublishQueue.poll();
     }
 
     @Override

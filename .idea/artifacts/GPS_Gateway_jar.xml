@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="GPS_Gateway:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/GPS_Gateway_jar</output-path>
+    <root id="archive" name="GPS_Gateway.jar">
+      <element id="module-output" name="GPS_Gateway" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/paho/org.eclipse.paho.client.mqttv3/1.1.0/org.eclipse.paho.client.mqttv3-1.1.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

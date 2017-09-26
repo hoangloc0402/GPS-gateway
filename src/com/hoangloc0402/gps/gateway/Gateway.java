@@ -10,28 +10,18 @@ public class Gateway {
 	public static void main(String[] args) throws Exception{
 		DatagramSocket serverSocket = new DatagramSocket(9876);
 		byte[] receiveData = new byte[1024];
-		byte[] sendData ;
 
 		Publisher publisher = new Publisher("[Publisher]");
 		publisher.connect();
-		System.out.println("Gateway is running...");
-		long preTime = Calendar.getInstance().getTimeInMillis();
-		long curTime;
+		PublishDataThread p = new PublishDataThread(publisher);//thread for publishing data to mqtt
+		p.start();
 		try {
 			while (true) {
 				DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
 				serverSocket.receive(receivePacket);
 
-				String sentence = new String(receivePacket.getData(),receivePacket.getOffset(),receivePacket.getLength());
-				System.out.println(sentence);
-				publisher.addMessage(sentence);
-				curTime = Calendar.getInstance().getTimeInMillis();
-				if(curTime - preTime > 10000) {
-					preTime = curTime;
-					if (publisher.isConnected()) {
-						if(!publisher.PublishQueue.isEmpty()) publisher.publishTextMessage((publisher.getMessage()));
-					}
-				}
+				HandleDataThread h = new HandleDataThread(receivePacket,publisher);//thread for handling data
+				h.start();
 			}
 		}
 		catch (Exception e) {
