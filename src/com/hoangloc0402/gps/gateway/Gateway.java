@@ -7,14 +7,17 @@ import java.net.DatagramSocket;
 import java.util.Calendar;
 
 public class Gateway {
+
 	public static void main(String[] args) throws Exception{
-		DatagramSocket serverSocket = new DatagramSocket(9876);
+		final int port = 7777;
+		DatagramSocket serverSocket = new DatagramSocket(port);
 		byte[] receiveData = new byte[1024];
 
 		Publisher publisher = new Publisher("[Publisher]");
 		publisher.connect();
 		PublishDataThread p = new PublishDataThread(publisher);//thread for publishing data to mqtt
 		p.start();
+		System.out.println("Gateway in running at port: "+port);
 		try {
 			while (true) {
 				DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);

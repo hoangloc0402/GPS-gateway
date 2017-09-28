@@ -11,8 +11,10 @@ public class PublishDataThread extends Thread{
         while (true){
             try {
                 Thread.sleep(200);
-                if (publisher.isConnected()) {
-                    if(!publisher.PublishQueue.isEmpty()) publisher.publishTextMessage((publisher.getMessage()));
+                synchronized (publisher) {
+                    if (publisher.isConnected()) {
+                        if (!publisher.PublishQueue.isEmpty()) publisher.publishTextMessage((publisher.getMessage()));
+                    }
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();

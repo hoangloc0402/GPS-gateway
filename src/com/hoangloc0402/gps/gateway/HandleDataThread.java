@@ -14,7 +14,8 @@ public class HandleDataThread extends Thread{
     public void run() {
         String sentence = new String(receivePacket.getData(),receivePacket.getOffset(),receivePacket.getLength());
         System.out.println("RECEIVE: "+sentence);
-
-        publisher.addMessage(sentence);
+        synchronized (publisher) {
+            publisher.addMessage(sentence);
+        }
     }
 }
