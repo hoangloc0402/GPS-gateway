@@ -13,7 +13,7 @@ public class HandleDataThread extends Thread{
     @Override
     public void run() {
         String sentence = new String(receivePacket.getData(),receivePacket.getOffset(),receivePacket.getLength());
-        System.out.println("RECEIVE: "+sentence);
+//        System.out.println("RECEIVE: "+sentence);
         synchronized (publisher) {
             publisher.addMessage(sentence);
         }

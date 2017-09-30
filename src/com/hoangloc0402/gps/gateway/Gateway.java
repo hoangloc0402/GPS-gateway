@@ -22,9 +22,12 @@ public class Gateway {
 			while (true) {
 				DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
 				serverSocket.receive(receivePacket);
+				String sentence = new String(receivePacket.getData(),receivePacket.getOffset(),receivePacket.getLength());
+				//System.out.println("RECEIVE: "+sentence);
+				publisher.addMessage(sentence);
+//				HandleDataThread h = new HandleDataThread(receivePacket,publisher);//thread for handling data
+//				h.start();
 
-				HandleDataThread h = new HandleDataThread(receivePacket,publisher);//thread for handling data
-				h.start();
 			}
 		}
 		catch (Exception e) {
