@@ -7,20 +7,20 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import java.io.UnsupportedEncodingException;
 
 public class Publisher implements MqttCallback, IMqttActionListener {
-    public static final String MqttUserName = "zvzzpcnw";
-    public static final String MqttPassword = "NAcTd5BI5Sfu";
-    public static final String MqttServerURL = "tcp://m20.cloudmqtt.com:11297";
-    public static final String TOPIC = "AssignmentNetworking";
-    public static final String ENCODING = "UTF-8";
-    public static final int QUALITY_OF_SERVICE = 2;
+    private static final String MqttUserName = "tedfdjcr";
+    private static final String MqttPassword = "yoH3kIKmjikr";
+    private static final String MqttServerURL = "tcp://m13.cloudmqtt.com:19122";
+    private static final String TOPIC = "AssignmentNetworking";
+    private static final String ENCODING = "UTF-8";
+    private static final int QUALITY_OF_SERVICE = 2;
 
-    protected LinkedList<String> PublishQueue = new LinkedList<>();
+    private LinkedList<String> PublishQueue = new LinkedList<>();
     protected String name;
-    protected String clientId;
-    protected MqttAsyncClient client;
-    protected MemoryPersistence memoryPersistence;
-    protected IMqttToken connectToken;
-    protected IMqttToken subscribeToken;
+    private String clientId;
+    public MqttAsyncClient client;
+    private MemoryPersistence memoryPersistence;
+    private IMqttToken connectToken;
+    private IMqttToken subscribeToken;
 
     public Publisher(String name) { this.name = name; }
 
