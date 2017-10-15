@@ -23,7 +23,7 @@ public class Gateway {
 				DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
 				serverSocket.receive(receivePacket);
 				String sentence = new String(receivePacket.getData(),receivePacket.getOffset(),receivePacket.getLength());
-				System.out.println(sentence);
+				//System.out.println(sentence);
 				publisher.addMessage(sentence);
 			}
 		}

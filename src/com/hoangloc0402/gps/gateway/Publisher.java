@@ -14,7 +14,7 @@ public class Publisher implements MqttCallback, IMqttActionListener {
     private static final String ENCODING = "UTF-8";
     private static final int QUALITY_OF_SERVICE = 2;
 
-    private LinkedList<String> PublishQueue = new LinkedList<>();
+    public LinkedList<String> PublishQueue = new LinkedList<>();
     protected String name;
     private String clientId;
     public MqttAsyncClient client;
