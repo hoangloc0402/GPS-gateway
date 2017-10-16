@@ -14,7 +14,6 @@ public class Publisher implements MqttCallback, IMqttActionListener {
     private static final String ENCODING = "UTF-8";
     private static final int QUALITY_OF_SERVICE = 2;
 
-    public LinkedList<String> PublishQueue = new LinkedList<>();
     protected String name;
     private String clientId;
     public MqttAsyncClient client;
@@ -48,13 +47,6 @@ public class Publisher implements MqttCallback, IMqttActionListener {
         return (client != null) && (client.isConnected());
     }
 
-    public void addMessage(String msg){
-        PublishQueue.addLast(msg);
-    }
-
-    public String getMessage(){
-        return PublishQueue.poll();
-    }
 
     @Override
     public void connectionLost(Throwable cause) {
