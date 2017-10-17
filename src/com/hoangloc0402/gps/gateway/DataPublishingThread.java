@@ -13,13 +13,13 @@ public class DataPublishingThread extends Thread{
         while (true){
             try {
                 Thread.sleep(1000);
-                synchronized (Gateway.messageList) {
+                synchronized (Gateway.hashMap) {
                     if (publisher.isConnected()) {
                         try {
                             JSONObject jo = new JSONObject();
-                            jo.put("list",Gateway.messageList);
+                            jo.put("list",Gateway.hashMap);
                             publisher.publishTextMessage(jo.toString());
-                            Gateway.messageList.clear();
+                            Gateway.hashMap.clear();
                         }
                         catch (Exception e){}
                     }

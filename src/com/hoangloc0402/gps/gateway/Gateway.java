@@ -5,12 +5,10 @@ import org.json.JSONObject;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Gateway {
-	public static HashMap<String,JSONObject> messageList = new HashMap<>();
+	public static HashMap<String,JSONObject> hashMap = new HashMap<>();
 	public static void main(String[] args) throws Exception{
 		final int port = 7777;
 		DatagramSocket serverSocket = new DatagramSocket(port);
@@ -29,9 +27,9 @@ public class Gateway {
 				String receiveMessage = new String(receivePacket.getData(),receivePacket.getOffset(),receivePacket.getLength());
 				//System.out.println(sentence);
 				new Thread(()->{
-					synchronized (messageList) {
+					synchronized (hashMap) {
 						JSONObject jo = new JSONObject(receiveMessage);
-						messageList.put(jo.getString("id"),jo);
+						hashMap.put(jo.getString("id"),jo);
 					}
 				}).start();
 
